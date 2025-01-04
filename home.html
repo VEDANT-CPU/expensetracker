@@ -1,0 +1,16 @@
+{% extends 'expenses/base.html'%}
+{% block content %}
+{% for transaction in transactions %}
+  <article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">transaction done by: {{transaction.amount_sender}}</a>
+      <small class="text-muted">{{ transaction.date_posted|date:"d F, Y" }}</small>
+    </div>
+    <h2><a class="article-title" href="{% url 'expenses-detail' transaction.id %}">{{ transaction.title }}</a></h2>
+    <h4>mode of payement: {{transaction.mode}}, amount: {{transaction.amount}} sent to {{transaction.sent_to}}</h4>
+    <p class="article-content">{{ transaction.content }}</p>
+  </div>
+  </article>
+{% endfor %}
+{% endblock content %}
